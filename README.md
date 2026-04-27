@@ -1,6 +1,126 @@
 # web4sdk
 eaco web4 sdk
 
+Web4SDK — Payment Module
+EACO Token Payment SDK for Web3 / Web4 / AI Agents / Virtual Universes
+
+Web4SDK Payment Module provides a unified, lightweight, and extensible interface for integrating EACO token payments into decentralized applications, AI Agents, games, virtual worlds, and merchant systems.
+
+Web4SDK 支付模块为去中心化应用、AI Agent、游戏、虚拟宇宙和商家系统提供统一、轻量、可扩展的 EACO 代币支付接口。
+
+✨ Features | 功能亮点
+
+🔹 Direct Payment — Send EACO tokens between wallets
+
+🔹 Subscription Payment — Automated recurring billing
+
+🔹 Streaming Payment — Continuous token streaming (Sablier-style)
+
+🔹 AI Agent Ready — Designed for autonomous agent payments
+
+🔹 Solana Native — Fast, low-cost, scalable
+
+📦 Installation | 安装
+bash
+npm install web4sdk
+🚀 Quick Start | 快速开始
+ts
+import { EacoPay } from "web4sdk";
+
+const pay = new EacoPay({
+  rpc: "https://api.mainnet-beta.solana.com",
+  tokenMint: "EACO_TOKEN_MINT_ADDRESS"
+});
+
+await pay.pay(userWallet, "ReceiverPubkey", 1.25);
+🧩 API Reference | API 文档
+1. Direct Payment | 直接支付
+Method
+ts
+pay(from: Keypair, to: string, amount: number)
+Description
+Send EACO tokens from one wallet to another.
+从一个钱包向另一个钱包发送 EACO 代币。
+
+Example
+ts
+const sig = await pay.pay(userWallet, "ReceiverPubkey", 1.25);
+console.log("Payment sent:", sig);
+2. Subscription Payment | 订阅支付（自动扣费）
+Create subscription
+ts
+createSubscription({ from, to, amount, interval })
+Execute subscription
+ts
+execute(subscription)
+Example
+ts
+const sub = await subscribe.createSubscription({
+  from: userWallet,
+  to: "ReceiverPubkey",
+  amount: 2,
+  interval: 86400 // 1 day
+});
+
+await subscribe.execute(sub);
+3. Streaming Payment | 流式支付（Sablier 模式）
+Create stream
+ts
+createStream({ from, to, total, duration })
+Claim stream
+ts
+claim(stream)
+Example
+ts
+const stream = streamPay.createStream({
+  from: employerWallet,
+  to: workerWallet,
+  total: 100,
+  duration: 3600
+});
+
+await streamPay.claim(stream);
+🤖 AI Agent Integration | AI Agent 集成
+Web4SDK is fully compatible with autonomous AI Agents.
+Web4SDK 完全兼容自主 AI Agent，可用于：
+
+自动支付 API
+
+自动结算任务
+
+自动购买服务
+
+自动发放奖励
+
+Example
+ts
+async function agentPayTask(agent, task) {
+  const sig = await pay.pay(agent.wallet, task.receiver, task.amount);
+  return { status: "completed", tx: sig };
+}
+🛡 Security Recommendations | 安全建议
+Do not store private keys in frontend
+不要在前端存储私钥
+
+Use hardware wallets for merchants
+商家应使用硬件钱包
+
+Validate all wallet addresses
+所有地址必须校验
+
+Use retry logic for AI Agents
+AI Agent 应使用重试机制
+
+🗺 Roadmap | 路线图
+Version	Feature	中文说明
+v0.2	Multi-chain support	多链支持
+v0.3	Merchant plugins	商家插件
+v0.5	Virtual credit card	虚拟信用卡
+v1.0	Web4 Payment Protocol	Web4 支付协议
+
+
+📜 License
+MIT License
 
 
 ------
